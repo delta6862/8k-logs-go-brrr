@@ -14,8 +14,8 @@ class nginx_logs:
 
     pk = paramiko.RSAKey.from_private_key(open(key_file))
 
-
     ssh = paramiko.SSHClient()
+    ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     ssh.connect(ip, username="root", pkey=pk)
 

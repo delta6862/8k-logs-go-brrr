@@ -12,8 +12,9 @@ class apache_logs:
   def get_logs(self, ip, servername, key_file):
 
     pk = paramiko.RSAKey.from_private_key(open(key_file))
-
+    
     ssh = paramiko.SSHClient()
+    ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     ssh.connect(self.ip, username="root", pkey=pk)
 
