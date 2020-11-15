@@ -7,7 +7,7 @@ import os
 config = configparser.ConfigParser()
 config.read('8k-configs-go.brrr')
 
-privkey = open("rootprivkey.txt").read()
+privkey = "rootprivkey.txt"
 
 #read the ips from the ip list
 ips = open("blue-ips.txt").readlines()
