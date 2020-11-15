@@ -1,6 +1,6 @@
 import paramiko
 from scp import SCPClient
-from . import registry-collection
+from . import registry_collection
 
 
 class nginx_logs:
@@ -23,4 +23,4 @@ class nginx_logs:
     scp.get('/var/log/nginx/access.log', 'collectedlogs/nginxlog' + self.servername) # change this
     scp.close()
 
- registry-collection.register(nginx_logs)
+registry_collection.register(nginx_logs)

@@ -1,5 +1,5 @@
 # Import collector agents
-from collection import registry-collection
+from collection import registry_collection
 from collection import *
 import configparser
 import os
@@ -41,7 +41,7 @@ apachelog4.get_logs()
 
 # Run each collection agent
 for fortress in config['Blue-Fortress-IP']:
-    for m in registry-collection.mods:
+    for m in registry_collection.mods:
         m(config['Blue-Fortress-IP'][fortress], fortress, privkey)
 
         

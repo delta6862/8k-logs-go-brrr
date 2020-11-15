@@ -1,6 +1,6 @@
 import paramiko
 from scp import SCPClient
-from . import registry-collection
+from . import registry_collection
 
 class apache_logs:
   def __init__(self, ip, servername, key_file):
@@ -22,4 +22,4 @@ class apache_logs:
     scp.get('/var/log/apache2/access.log.1', 'collectedlogs/apachelog' + self.servername) # change
     scp.close()
 
-registry-collection.register(apache_logs)
+registry_collection.register(apache_logs)
