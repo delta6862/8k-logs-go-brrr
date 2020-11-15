@@ -1,4 +1,4 @@
-mods = []
+setup_mods = []
 
 def register(mod):
-    mods.append(mod)
+    setup_mods.append(mod)
