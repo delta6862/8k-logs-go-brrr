@@ -1,6 +1,11 @@
 # Import collector agents
 from collection import registry_collection
 from collection import *
+
+# Import setup agents
+from setup import registry_setup
+from setup import *
+
 import configparser
 import os
 
