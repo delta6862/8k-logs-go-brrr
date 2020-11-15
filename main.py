@@ -1,6 +1,6 @@
 # Import collector agents
-from collector import registry
-from collector import *
+from collection import registry
+from collection import *
 
 # Run each agent
 for m in registry.mods:
