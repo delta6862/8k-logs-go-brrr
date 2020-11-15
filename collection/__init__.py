@@ -1,1 +1,1 @@
-__all__ = ["registry"]
+__all__ = ["registry-collection"]
