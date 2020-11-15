@@ -41,7 +41,7 @@ apachelog4.get_logs()
 
 # Run each collection agent
 for fortress in config['Blue-Fortress-IP']:
-    for m in registry_collection.mods:
+    for m in registry_collection.collection_mods:
         m(config['Blue-Fortress-IP'][fortress], fortress, privkey)
 
         
