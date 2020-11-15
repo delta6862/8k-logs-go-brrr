@@ -1,9 +1,11 @@
 # Import collector agents
-from collection import registry as registry
-from collection import nginxLogs
-from collection import apacheLogs
-
+from collection import registry-collection
+from collection import *
+import configparser
 import os
+
+config = configparser.ConfigParser()
+config.read('8k-configs-go.brrr')
 
 privkey = open("rootprivkey.txt").read()
 
@@ -37,8 +39,9 @@ apachelog2.get_logs()
 apachelog3.get_logs()
 apachelog4.get_logs()
 
-# Run each agent
-#for m in registry.mods:
- #   m()
+# Run each collection agent
+for fortress in config['Blue-Fortress-IP']:
+    for m in registry-collection.mods:
+        m(config['Blue-Fortress-IP'][fortress], fortress, privkey)
 
         
