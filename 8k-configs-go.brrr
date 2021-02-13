@@ -1,5 +1,5 @@
 [General]
-key_file = rootprivkey.txt
+key_file = credentials/rootprivkey.txt
 
 [Blue-Fortress-IP]
 fort1 = 10.10.10.10
@@ -8,7 +8,7 @@ fort3 = 10.10.10.10
 fort4 = 10.10.10.10
 
 [Blue-IP]
-firehawk = 10.10.10.10
-delta = 10.10.10.10
-abigpickle = 10.10.10.10
-noscript = 10.10.10.10
+user1 = 10.10.10.10
+user2 = 10.10.10.10
+user3 = 10.10.10.10
+user4 = 10.10.10.10
