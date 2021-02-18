@@ -1,6 +1,10 @@
 # System imports
+from termcolor import colored
 from scp import SCPClient
 import paramiko
+import requests
+import random
+
 
 # Custom imports
 from . import registry
@@ -10,6 +14,8 @@ class Apache:
         self.ip = ip
         self.name = name
         self.key_file = key_file
+        if self.healthcheck() != "Up":
+            print(colored(self.name + "[Apache]" + ":", "blue"), colored("Down", "red"))
     
     def setup(self):
         pass
@@ -25,7 +31,20 @@ class Apache:
         scp.close()
     
     def healthcheck(self):
-        pass
+        naughty_word = random.randint(100000, 200000)
+        requests.get("http://" + str(self.ip) + "/" + str(naughty_word))
+
+        pk = paramiko.RSAKey.from_private_key(open(self.key_file))
+        ssh = paramiko.SSHClient()
+        ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+        ssh.connect(self.ip, username="root", pkey=pk)
+        _, stdout, _ = ssh.exec_command("cat /var/log/apache2/access.log.1")
+        if naughty_word in str(stdout):
+            self.up = True
+            return "Up"
+        else:
+            self.up = False
+            return "Down"
     
     def cleanup(self):
         pass

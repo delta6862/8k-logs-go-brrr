@@ -1,25 +1,23 @@
-# Import collector agents
-from collection import registry_collection
-from collection import *
-
-# Import setup agents
-from setup import registry_setup
-from setup import *
-
-# Import healthcheck agents
-from healthcheck import registry_healthcheck
-from healthcheck import *
-
+# System imports
 import configparser
 import os
 
+# Custom imports
+from fortress import *
+
+# Parse configuration file
 config = configparser.ConfigParser()
 config.read('8k-configs-go.brrr')
 
-def collect():
-    # Run each collection agent
-    for fortress in config['Blue-Fortress-IP']:
-        for m in registry_collection.collection_mods:
-            m(config['Blue-Fortress-IP'][fortress], fortress, config['General']['key_file'])
+fortresses = []
+
+for fortress in config['Blue-Fortress-IP']:
+    fortresses.append(
+        fortress.Fortress(
+        name=fortress, 
+        ip=config['Blue-Fortress-IP'][fortress], 
+        key_file = config['General']['key_file']
+        )
+    )
 
         
