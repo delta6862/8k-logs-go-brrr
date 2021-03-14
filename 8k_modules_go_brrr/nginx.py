@@ -6,12 +6,15 @@ import os
 # Custom imports
 from . import registry
 
+
 class Nginx:
     def __init__(self, ip=None, servername=None, key_file=None):
         self.servername = servername
         self.key_file = key_file
         self.ip = ip
 
+    # If the box has Nginx then everything should already be setup
+    # TODO: create heuristic that checks if nginx is installed and returns the vhosts and settings if applicable
     def setup(self):
         pass
 
@@ -25,7 +28,7 @@ class Nginx:
         ssh.connect(self.ip, username="root", pkey=pk)
         # transfer the log file via scp and save it on our own box
         scp = SCPClient(ssh.get_transport())
-        scp.get('/var/log/nginx/access.log', 'collectedlogs/' + self.servername + "/nginxlogs/logtmp") # change this
+        scp.get('/var/log/nginx/access.log', 'collectedlogs/' + self.servername + "/nginxlogs/logtmp")  # change this
         scp.close()
 
         # We add the new lines of the logtmp to the log file
@@ -63,10 +66,13 @@ class Nginx:
         os.remove(f'collectedlogs/{self.servername}/nginxlogs/lognew')
         os.remove(f'collectedlogs/{self.servername}/nginxlogs/logtmp')
 
+    # TODO: add a healthcheck, send a random string and verify its in the new logs
     def healthcheck(self):
         pass
 
+    # TODO: add a cleanup ability if applicable (clear logs?)
     def cleanup(self):
         pass
+
 
 registry.register(Nginx)
